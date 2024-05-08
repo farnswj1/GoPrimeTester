@@ -1,11 +1,15 @@
 package controllers
 
 import (
+	"app/cache"
 	"app/libs"
 	"app/validators"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
+
+var isPrimeMemoized = cache.Memoize(libs.IsPrime, 86400 * time.Second)
 
 func PrimalityTest(c *fiber.Ctx) error {
 	var body validators.Number
@@ -28,7 +32,7 @@ func PrimalityTest(c *fiber.Ctx) error {
 		)
 	}
 
-	result, err := libs.IsPrime(body.Value)
+	result, err := isPrimeMemoized(body.Value)
 
 	if err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(
