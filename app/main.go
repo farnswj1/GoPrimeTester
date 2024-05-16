@@ -9,10 +9,12 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func getApp() *fiber.App {
+func init() {
 	utils.LoadEnv()
 	cache.LoadRedis()
+}
 
+func getApp() *fiber.App {
 	app := fiber.New()
 
 	// Middleware
