@@ -55,3 +55,7 @@ func Memoize[P any, T any](
 		return result, nil
 	}
 }
+
+func init() {
+	LoadRedis()
+}

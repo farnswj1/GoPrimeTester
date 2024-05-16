@@ -1,18 +1,11 @@
 package main
 
 import (
-	"app/cache"
 	"app/controllers"
 	"app/middleware"
-	"app/utils"
 
 	"github.com/gofiber/fiber/v2"
 )
-
-func init() {
-	utils.LoadEnv()
-	cache.LoadRedis()
-}
 
 func getApp() *fiber.App {
 	app := fiber.New()
