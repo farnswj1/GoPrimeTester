@@ -12,7 +12,7 @@ import (
 
 var Redis *redis.Storage
 
-func LoadRedis() {
+func loadRedis() {
 	if Redis != nil {
 		return
 	}
@@ -57,5 +57,5 @@ func Memoize[P any, T any](
 }
 
 func init() {
-	LoadRedis()
+	loadRedis()
 }
